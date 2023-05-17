@@ -9,9 +9,6 @@ let rocketY = 90;
 
 // night sky
 
-
-
-
 function rocket(){
 //This is the yellow "holding station" for the rocket
 fill(255,205,0);
@@ -133,5 +130,60 @@ ellipse(x, y, 20 * s);
 fill(20, 60, 80);
 ellipse(x + 380, y + 215, 40 * s);
 
+//start button
+fill(255);
+let startButton = rect(x + 150, y + 120, 250 * s, 120 * s);
 
 
+
+  function mousePressed() {
+    if (mouseX > x + 150 && mouseX < x + 400 && mouseY > y + 150 && mouseY < y + 250) {
+      gameIsActive = true;
+      console.log("welcome to Rocket Launch");
+      document.getElementById('startButton').style.display = 'none';
+    }
+  }
+
+  
+  /*function xMove() {
+    if (gameIsActive === true) {
+      image(scenary, 0, 0, 800, 600);
+      image(mouse, characterMouseX, characterMouseY, 120, 90);
+  
+      if (keyIsDown(39)) {
+        rocketX = rocketX + 8;
+      }
+      if (keyIsDown(37)) {
+        rocketX = rocketX - 8;
+      }
+    }
+  }
+
+  /*function yMove() {
+    if (gameIsActive === true) {
+      image(scenary, 0, 0, 800, 600);
+      image(mouse, characterMouseX, characterMouseY, 120, 90);
+  
+      if (keyIsDown(39)) {
+        rocketX = rocketX + 8;
+      }
+      if (keyIsDown(37)) {
+        rocketX = rocketX - 8;
+      }
+    }
+  }
+  
+  //getting the mouse to fail when hitting the wall
+  function wall (){
+    if(mouse > 10 && mouse < 800){
+      console.log("stop");}
+    
+  }*/
+
+
+
+
+
+
+
+    
