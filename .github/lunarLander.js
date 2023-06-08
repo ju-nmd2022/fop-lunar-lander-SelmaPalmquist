@@ -2,14 +2,16 @@ background(0,0,0);
 let x = 100;
 let y = 100;
 let s = 1.0;
+let sentence = "Start";
 
-let gameIsActive = false;
+/*let gameIsActive = false;
 let rocketX = 300;
 let rocketY = 90;
+const sentence = "Press to start";*/
 
 // night sky
 
-function rocket(){
+
 //This is the yellow "holding station" for the rocket
 fill(255,205,0);
 rect(x + 175, y - 20, 50 * s, 150 * s);
@@ -94,7 +96,7 @@ pop();
 
 // the fire coming out of the engines
 
-}
+
 
 
 
@@ -132,24 +134,25 @@ ellipse(x + 380, y + 215, 40 * s);
 
 //start button
 fill(255);
-let startButton = rect(x + 150, y + 120, 250 * s, 120 * s);
+rect(x + 110, y + 120, 250 * s, 120 * s);
+fill(0,0,0);
+textSize(40);
+text(sentence, x + 186, y + 190);
 
 
+let startButtonVisible = true;
 
   function mousePressed() {
     if (mouseX > x + 150 && mouseX < x + 400 && mouseY > y + 150 && mouseY < y + 250) {
       gameIsActive = true;
       console.log("welcome to Rocket Launch");
-      document.getElementById('startButton').style.display = 'none';
+      startButtonVisible = false;
     }
   }
-
   
-  /*function xMove() {
+  function xMove() {
     if (gameIsActive === true) {
-      image(scenary, 0, 0, 800, 600);
-      image(mouse, characterMouseX, characterMouseY, 120, 90);
-  
+
       if (keyIsDown(39)) {
         rocketX = rocketX + 8;
       }
@@ -159,11 +162,9 @@ let startButton = rect(x + 150, y + 120, 250 * s, 120 * s);
     }
   }
 
-  /*function yMove() {
+  function yMove() {
     if (gameIsActive === true) {
-      image(scenary, 0, 0, 800, 600);
-      image(mouse, characterMouseX, characterMouseY, 120, 90);
-  
+     
       if (keyIsDown(39)) {
         rocketX = rocketX + 8;
       }
@@ -172,18 +173,13 @@ let startButton = rect(x + 150, y + 120, 250 * s, 120 * s);
       }
     }
   }
-  
-  //getting the mouse to fail when hitting the wall
-  function wall (){
-    if(mouse > 10 && mouse < 800){
-      console.log("stop");}
+
+
+  //getting the rocket to stop when reaching the planet
+  function moonReached (){
+    if (gameIsActive){
+        if(rocketX > x + 115 && rocketX < x + 400 && rocketY > y + 260){
+      console.log("Crash");}
+    }
     
-  }*/
-
-
-
-
-
-
-
-    
+  }
