@@ -1,15 +1,46 @@
-background(0,0,0);
+
 let x = 100;
 let y = 100;
 let s = 1.0;
-let sentence = "Start";
-
-/*let gameIsActive = false;
 let rocketX = 300;
 let rocketY = 90;
-const sentence = "Press to start";*/
+let beforeStart;
+let rocketCrash;
+let landedSafe;
+
+/*
+function preload(){
+  beforeStart = loadImage('Images/beforeStart.png');
+  rocketCrash = loadImage('Images/rocketCrash.png');
+  landedSafe = loadImage('Images/landedSafe.png');
+}
+
+
+function setup(){
+  createCanvas(800,600);
+}
+let gameIsActive = "notstarted";
+
+function mousePressed() {
+  if (mouseX > x + 150 && mouseX < x + 400 && mouseY > y + 150 && mouseY < y + 250) {
+    gameIsActive = "started";
+    console.log("welcome to Rocket Launch");
+  }
+}
+
+
+function draw(){
+ if(gameIsActive === "notstarted"){
+  image(beforeStart, 0, 0, 800, 600);
+ }
+ if(gameIsActive === "started"){
+  background(0,0,0);
+ }
+}
+  */
 
 // night sky
+
 
 
 //This is the yellow "holding station" for the rocket
@@ -28,24 +59,20 @@ noStroke();
 triangle(x + 200, y - 50,x + 207, y - 21, x + 225, y - 21);
 pop();
 
+
+
 //the light grey poles on the sides with shadow. 
-function pole(x, y){
 fill(200, 200, 200);
-ellipse(x, y, 13 * s, 110 * s);
-}
-pole(x + 175, y + 65);
-pole(x + 225, y + 65);
+ellipse(x + 175, y + 65, 13 * s, 110 * s);
+ellipse(x + 225, y + 65, 13 * s, 110 * s);
 
 //here I put the shadows in push pop because I do not want them
 //to have stroke but I want the rest of the rocket to have it
 push();
-function poleShadow(x, y){
     fill(150, 150, 150);
     noStroke();
-    ellipse(x, y, 6 * s, 105 * s);
-    }
-    poleShadow(x + 178, y + 65);
-    poleShadow(x + 228, y + 65);
+    ellipse(x + 178, y + 65, 6 * s, 105 * s);
+    ellipse(x + 228, y + 65, 6 * s, 105 * s);
 pop();
 
 
@@ -76,23 +103,16 @@ line(x + 167, y + 125, x + 189, y + 125);
 pop();
 
 //The engines
-function engine(x, y, s){
     fill(150, 150, 150);
-    rect(x, y, 15 * s);
-}
-engine(x + 180, y + 130, 1.0);
-engine(x + 205, y + 130, 1.0);
+    rect(x + 180, y + 130, 15 * s);
+    rect(x + 205, y + 130, 15 * s);
 
 push();
-function engineShadow(x, y, s){
     noStroke();
     fill(100, 100, 100);
-    rect(x, y, 5 * s, 13 * s);
-}
-engineShadow(x + 190, y + 131, 1.0);
-engineShadow(x + 215, y + 131, 1.0);
+    rect(x + 190, y + 131, 5 * s, 13 * s);
+    rect(x + 215, y + 131, 5 * s, 13 * s);
 pop();
-
 
 // the fire coming out of the engines
 
@@ -107,23 +127,16 @@ noStroke();
 fill(255, 100, 30);
 ellipse(x + 205, y + 350, 180 * s);
 
-// Details for the moon
-function moonHoleHighlight(x, y, s){
+// Details for the moon - highlight and shadow
     fill(255, 130, 0);
-    ellipse(x, y, 30 * s);
+    ellipse(x + 158, y + 337, 24 * s);
+    ellipse(x + 237, y + 388, 30 * s);
+    ellipse(x + 237, y + 318, 36 * s);
 
-}
-moonHoleHighlight(x + 158, y + 337, 0.8);
-moonHoleHighlight(x + 237, y + 388, 1.0);
-moonHoleHighlight(x + 237, y + 318, 1.2);
-
-function moonHoleShadow(x, y, s){
     fill(255, 70, 0);
-    ellipse(x, y, 30 * s);
-}
-moonHoleShadow(x + 160, y + 340, 0.8);
-moonHoleShadow(x + 240, y + 390, 1.0);
-moonHoleShadow(x + 240, y + 320, 1.2);
+    ellipse(x + 160, y + 340, 24 * s);
+    ellipse(x + 240, y + 390, 30 * s);
+    ellipse(x + 240, y + 320, 36 * s);
 
 //other distant planets for visual effect
 fill(0, 100, 50);
@@ -132,26 +145,14 @@ ellipse(x, y, 20 * s);
 fill(20, 60, 80);
 ellipse(x + 380, y + 215, 40 * s);
 
-//start button
-fill(255);
-rect(x + 110, y + 120, 250 * s, 120 * s);
-fill(0,0,0);
-textSize(40);
-text(sentence, x + 186, y + 190);
 
 
-let startButtonVisible = true;
 
-  function mousePressed() {
-    if (mouseX > x + 150 && mouseX < x + 400 && mouseY > y + 150 && mouseY < y + 250) {
-      gameIsActive = true;
-      console.log("welcome to Rocket Launch");
-      startButtonVisible = false;
-    }
-  }
+
+
   
   function xMove() {
-    if (gameIsActive === true) {
+    if (gameIsActive === "started") {
 
       if (keyIsDown(39)) {
         rocketX = rocketX + 8;
@@ -163,23 +164,38 @@ let startButtonVisible = true;
   }
 
   function yMove() {
-    if (gameIsActive === true) {
+    if (gameIsActive === "started") {
      
-      if (keyIsDown(39)) {
-        rocketX = rocketX + 8;
-      }
-      if (keyIsDown(37)) {
-        rocketX = rocketX - 8;
+      if (keyIsDown(UP_ARROW)) {
+        rocketY = rocketY + 8;
       }
     }
   }
 
 
   //getting the rocket to stop when reaching the planet
-  function moonReached (){
-    if (gameIsActive){
+  function landingCrash (){
+    if (gameIsActive === "started"){
         if(rocketX > x + 115 && rocketX < x + 400 && rocketY > y + 260){
-      console.log("Crash");}
+      gameIsActive = "failed";
+      image("Images/rocketCrash");
+      console.log("Crash");
     }
-    
+    }
   }
+
+  function landingSuccessful (){
+    if (gameIsActive === "started"){
+        if(rocketX > x + 115 && rocketX < x + 400 && rocketY > y + 260){
+      gameIsActive = "success";
+      image("Images/landedSafe");
+      console.log("Landing Successful");
+    }
+    }
+  }
+
+  /*
+  }
+}
+*/
+
