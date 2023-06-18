@@ -2,12 +2,12 @@
 let rocketX = 100;
 let rocketY = 100;
 let s = 1.0;
-let moonX = 90;
-let moonY = 90;
+let moonX = 95;
+let moonY = 100;
 let beforeStart;
 let rocketCrash;
 let landedSafe;
-
+let direction = "falling";
 /*
 function preload(){
   beforeStart = loadImage('Images/startScreen.png');
@@ -27,7 +27,7 @@ function mousePressed() {
 
 
 */
-// night sky
+//night sky
 
 
 
@@ -48,9 +48,11 @@ function draw(){
  moon();
 rocket();
 
-
-rocketY = rocketY + 1;
-
+if (direction === "falling"){
+  if (rocketY <= 245){
+    rocketY = rocketY + 1;
+  }
+}
 }
 
 
