@@ -8,7 +8,7 @@ let beforeStart;
 let rocketCrash;
 let landedSafe;
 
-/*
+
 function preload(){
   beforeStart = loadImage('Images/beforeStart.png');
   rocketCrash = loadImage('Images/rocketCrash.png');
@@ -17,8 +17,7 @@ function preload(){
 
 
 
-
-
+gameIsActive = "notstarted";
 
 function mousePressed() {
   if (mouseX > x + 150 && mouseX < x + 400 && mouseY > y + 150 && mouseY < y + 250) {
@@ -27,7 +26,6 @@ function mousePressed() {
   }
 }
 
-*/
 
 
 // night sky
@@ -44,14 +42,14 @@ function draw(){
  }
  if(gameIsActive === "started"){
   background(0,0,0);}
-  */
+*/
+
+
  background (0,0,0);
 rocket();
 moon();
 
-
 rocketY = rocketY + 1;
-
 
 }
 
