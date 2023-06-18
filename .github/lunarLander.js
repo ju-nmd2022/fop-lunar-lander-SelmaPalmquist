@@ -8,13 +8,12 @@ let beforeStart;
 let rocketCrash;
 let landedSafe;
 
-
+/*
 function preload(){
-  beforeStart = loadImage('Images/beforeStart.png');
-  rocketCrash = loadImage('Images/rocketCrash.png');
-  landedSafe = loadImage('Images/landedSafe.png');
+  beforeStart = loadImage('Images/startScreen.png');
+  rocketCrash = loadImage('Images/unsuccessful.png');
+  landedSafe = loadImage('Images/successful.png');
 }
-
 
 
 gameIsActive = "notstarted";
@@ -27,7 +26,7 @@ function mousePressed() {
 }
 
 
-
+*/
 // night sky
 
 
@@ -46,18 +45,20 @@ function draw(){
 
 
  background (0,0,0);
+ moon();
 rocket();
-moon();
+
 
 rocketY = rocketY + 1;
 
 }
 
 
+  
 
 
-//This is the yellow "holding station" for the rocket
 function rocket(){
+  //This is the yellow "holding station" for the rocket
   fill(255,205,0);
   rect(rocketX + 175, rocketY - 20, 50 * s, 150 * s);
   push();
@@ -160,23 +161,12 @@ pop();
 
 
 
-  /*
-  function xMove() {
-    if (gameIsActive === "started") {
 
-      if (keyIsDown(39)) {
-        rocketX = rocketX + 8;
-      }
-      if (keyIsDown(37)) {
-        rocketX = rocketX - 8;
-      }
-    }
-  }
 
   function yMove() {
     if (gameIsActive === "started") {
      
-      if (keyIsDown(UP_ARROW)) {
+      if (keyIsDown(SPACE)) {
         rocketY = rocketY + 8;
       }
     }
