@@ -1,9 +1,8 @@
-
 let rocketX = 100;
-let rocketY = 100;
+let rocketY = 80;
 let s = 1.0;
 let moonX = 95;
-let moonY = 100;
+let moonY = 120;
 let beforeStart;
 let rocketCrash;
 let landedSafe;
@@ -49,7 +48,7 @@ function draw(){
 rocket();
 
 if (direction === "falling"){
-  if (rocketY <= 245){
+  if (rocketY <= 265){
     rocketY = rocketY + 1;
   }
 }
