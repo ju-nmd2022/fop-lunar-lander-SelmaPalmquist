@@ -2,63 +2,55 @@ let rocketX = 100;
 let rocketY = 80;
 let s = 1.0;
 let moonX = 95;
-let moonY = 120;
+let moonY = 150;
 let beforeStart;
 let rocketCrash;
 let landedSafe;
 let direction = "falling";
-/*
+
 function preload(){
-  beforeStart = loadImage('Images/startScreen.png');
-  rocketCrash = loadImage('Images/unsuccessful.png');
-  landedSafe = loadImage('Images/successful.png');
+  beforeStart = loadImage('images/startScreen.PNG');
+  rocketCrash = loadImage('images/unsuccessful.PNG');
+  landedSafe = loadImage('images/successful.PNG');
 }
 
 
 let gameState = "notstarted";
 
 function mousePressed() {
-  if (mouseX > x + 150 && mouseX < x + 400 && mouseY > y + 150 && mouseY < y + 250) {
+  if (mouseX > rocketX + 230 && mouseX < rocketX + 590 && mouseY > rocketY + 16 && mouseY < rocketY + 150) {
     gameState = "started";
     console.log("welcome to Rocket Launch");
   }
 }
-
-
-*/
-//night sky
-
-
 
 function setup(){
   createCanvas(800,600);
 }
 
 function draw(){
- /*if(gameState === "notstarted"){
+ if(gameState === "notstarted"){
   image(beforeStart, 0, 0, 800, 600);
  }
  if(gameState === "started"){
-  background(0,0,0);}
-*/
-
-
- background (0,0,0);
+  background(0,0,0);
  moon();
 rocket();
+landingSuccessful();
+restart();
+yMove();
 
 if (direction === "falling"){
-  if (rocketY <= 265){
+  if (rocketY <= 295){
     rocketY = rocketY + 1;
   }
-  
+
 }
 }
+}
 
 
   
-
-
 function rocket(){
   //This is the yellow "holding station" for the rocket
   fill(255,205,0);
@@ -130,6 +122,7 @@ function rocket(){
 
   // the fire coming out of the engines
 
+
 }
 
 function moon(){
@@ -154,6 +147,9 @@ ellipse(moonX + 240, moonY + 320, 36 * s);
 fill(0, 100, 50);
 ellipse(moonX, moonY, 20 * s);
 
+fill(0, 10, 50);
+ellipse(moonX + 450, moonY - 10, 60 * s);
+
 fill(20, 60, 80);
 ellipse(moonX + 380, moonY + 215, 40 * s);
 pop();
@@ -164,23 +160,26 @@ pop();
 
 
 
-
-  function yMove() {
-    if (gameState === "started") {
-     
-      if (keyIsDown(SPACE)) {
-        rocketY = rocketY + 8;
-      }
+// being able to control the speed
+function yMove() {
+  if (gameState === "started") {
+    if (keyIsDown(16)) {
+      rocketY -= 2;
+      console.log("rising");
     }
+  } else if (rocketY <= 295) {
+    rocketY++;
+    console.log("falling");
   }
+}
 
-/*
-  //getting the rocket to stop when reaching the planet
+
+  //getting the rocket to crasg when reaching the planet too hard
   function landingCrash (){
     if (gameState === "started"){
-        if(rocketX > rocketX + 115 && rocketX < rocketX + 400 && rocketY > rocketY + 260){
+        if(rocketY > 295){
       gameState = "failed";
-      image("Images/rocketCrash");
+      image(rocketCrash, 0, 0, 800, 600);
       console.log("Crash");
     }
     }
@@ -188,16 +187,25 @@ pop();
 
   function landingSuccessful (){
     if (gameState === "started"){
-        if(rocketX > rocketX + 115 && rocketX < rocketX + 400 && rocketY > rocketY + 260){
+        if(rocketY > 295){
       gameState = "success";
-      image("Images/landedSafe");
+      image(landedSafe, 0, 0, 800, 600);
       console.log("Landing Successful");
     }
     }
   }
 
-  /*
+  function restart(){
+    if(gameState === "success" || "failed"){
+      if (mouseX > rocketX + 10 && mouseX < rocketX + 170 && mouseY > rocketY + 140 && mouseY < rocketY + 240) {
+        gameState = "started";
+        console.log("welcome back to Rocket Launch");
+      }
+      else if (mouseX > rocketX + 440 && mouseX < rocketX + 600 && mouseY > rocketY + 140 && mouseY < rocketY + 240) {
+        gameState = "notstarted";
+        console.log("welcome another time");
+      }
+    }
   }
-}
-*/
 
+ 
