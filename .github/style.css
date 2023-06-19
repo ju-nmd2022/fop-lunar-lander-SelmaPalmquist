@@ -1,7 +1,12 @@
 body{
     background-color: black;
+    margin-left: 420px;
 }
 * {
    color: aliceblue;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+img{
+    margin-left: 50px;
 }
