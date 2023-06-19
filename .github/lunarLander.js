@@ -33,10 +33,11 @@ function draw(){
   image(beforeStart, 0, 0, 800, 600);
  }
  if(gameState === "started"){
-  background(0,0,0);
- moon();
+background(0,0,0);
+moon();
 rocket();
 landingSuccessful();
+landingCrash();
 restart();
 yMove();
 
@@ -194,18 +195,15 @@ function yMove() {
     }
     }
   }
-
-  function restart(){
-    if(gameState === "success" || "failed"){
+ 
+  function restart() {
+    if (gameState === "success" || gameState === "failed") {
       if (mouseX > rocketX + 10 && mouseX < rocketX + 170 && mouseY > rocketY + 140 && mouseY < rocketY + 240) {
         gameState = "started";
         console.log("welcome back to Rocket Launch");
-      }
-      else if (mouseX > rocketX + 440 && mouseX < rocketX + 600 && mouseY > rocketY + 140 && mouseY < rocketY + 240) {
+      } else if (mouseX > rocketX + 440 && mouseX < rocketX + 600 && mouseY > rocketY + 140 && mouseY < rocketY + 240) {
         gameState = "notstarted";
         console.log("welcome another time");
       }
     }
   }
-
- 
