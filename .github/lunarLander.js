@@ -211,16 +211,17 @@ function yMove() {
     if (gameState === "success" || gameState === "failed") { 
       if (mouseX > 110 && mouseX < 270 && mouseY > 210 && mouseY < 320) { 
         gameState = "started";
-        rocketY = 10;
-        speed = 1;
-        direction = "falling";
-     
+  rocketY = 10;
+  speed = 1;
+  direction = "falling";
       } 
       else if (mouseX > 540 && mouseX < 700 && mouseY > 210 && mouseY < 320) { 
         gameState = "notstarted";
+        rocketY = 10;
+        speed = 1;
+        direction = "landed";
       }
     }
   }
-
 
 
