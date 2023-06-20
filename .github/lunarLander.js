@@ -8,13 +8,13 @@ let rocketCrash;
 let landedSafe;
 let direction = "falling";
 let gameState = "notstarted";
+let speed = 2;
 
 function preload(){
   beforeStart = loadImage('images/startScreen.PNG');
   rocketCrash = loadImage('images/unsuccessful.PNG');
   landedSafe = loadImage('images/successful.PNG');
 }
-
 
 
 function mousePressed() {
@@ -41,22 +41,26 @@ landingCrash();
 restart();
 
 if (keyIsDown(32)) {
-  rocketY -= 3;
+  rocketY = rocketY - speed;
 }
 } else if (rocketY <= 295) {
-rocketY = rocketY + 1;
+rocketY = rocketY + speed;
+}
+
+if (keyIsDown(32)) {
+  speed = speed - 0.01;
+} else {
+  speed = speed + 0.01;
 }
 
 // i tried to remove this part but it stopped working so i keep it for now
 //until i can figure out 
 if (direction === "falling"){
   if (rocketY <= 295){
-    rocketY = rocketY + 1;
+    rocketY = rocketY + speed * 1.2;
   }
  }
 }
-
-
   
 function rocket(){
   //This is the yellow "holding station" for the rocket
@@ -184,7 +188,7 @@ function yMove() {
   //getting the rocket to crasg when reaching the planet too hard
   function landingCrash (){
     if (gameState === "started"){
-        if(rocketY > 295){
+        if(rocketY > 295 && speed > 2){
       gameState = "failed";
       image(rocketCrash, 0, 0, 800, 600);
       console.log("You crashed");
@@ -194,7 +198,7 @@ function yMove() {
 
   function landingSuccessful (){
     if (gameState === "started"){
-        if(rocketY > 295){
+        if(rocketY > 295 && speed < 2){
       gameState = "success";
       image(landedSafe, 0, 0, 800, 600);
       console.log("Landing Successful");
