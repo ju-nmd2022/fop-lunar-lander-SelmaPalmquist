@@ -16,7 +16,7 @@ function preload(){
   landedSafe = loadImage('images/successful.PNG');
 }
 
-function mouseClicked() {
+function mousePressed() {
   if (mouseX > 330 && mouseX < 680 && mouseY > 100 && mouseY < 230) {
     gameState = "started";
     console.log("welcome to Rocket Launch");
@@ -38,7 +38,7 @@ moon();
 rocket();
 landingSuccessful();
 landingCrash();
-mousePressed();
+mouseClicked();
 
 
 //makes the rocket controllable with space bar + fire coming out the engines
@@ -188,7 +188,7 @@ function yMove() {
   function landingCrash (){
     if (gameState === "started"){
         if(rocketY > 295 && speed > 1.3){
-      gameState = "unsuccessful";
+      gameState = "failed";
       direction = "landed";
       image(rocketCrash, 0, 0, 800, 600);
       console.log("You crashed");
@@ -199,7 +199,7 @@ function yMove() {
   function landingSuccessful (){
     if (gameState === "started"){
         if(rocketY > 295 && speed < 1.3){
-      gameState = "successful";
+      gameState = "success";
       direction = "landed";
       image(landedSafe, 0, 0, 800, 600);
       console.log("Landing Successful");
@@ -207,13 +207,14 @@ function yMove() {
     }
   }
 
-  function mousePressed() { 
+  function mouseClicked() { 
     if (gameState === "success" || gameState === "failed") { 
       if (mouseX > 110 && mouseX < 270 && mouseY > 210 && mouseY < 320) { 
         gameState = "started";
         rocketY = 10;
         speed = 1;
         direction = "falling";
+     
       } 
       else if (mouseX > 540 && mouseX < 700 && mouseY > 210 && mouseY < 320) { 
         gameState = "notstarted";
