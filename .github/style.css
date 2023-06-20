@@ -2,11 +2,15 @@ body{
     background-color: black;
     margin-left: 320px;
 }
-* {
-   color: aliceblue;
+h1 {
+   color: rgb(243, 205, 79);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: medium;
+    margin-left: 300px;
+    
 }
 
 img{
     margin-left: 140px;
 }
+

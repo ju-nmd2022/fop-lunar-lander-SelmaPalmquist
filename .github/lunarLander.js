@@ -1,5 +1,5 @@
 let rocketX = 160;
-let rocketY = 80;
+let rocketY = 10;
 let s = 1.0;
 let moonX = 150;
 let moonY = 150;
@@ -8,7 +8,7 @@ let rocketCrash;
 let landedSafe;
 let direction = "falling";
 let gameState = "notstarted";
-let speed = 2;
+let speed = 1;
 
 function preload(){
   beforeStart = loadImage('images/startScreen.PNG');
@@ -16,8 +16,7 @@ function preload(){
   landedSafe = loadImage('images/successful.PNG');
 }
 
-
-function mousePressed() {
+function mouseClicked() {
   if (mouseX > 330 && mouseX < 680 && mouseY > 100 && mouseY < 230) {
     gameState = "started";
     console.log("welcome to Rocket Launch");
@@ -27,6 +26,7 @@ function mousePressed() {
 function setup(){
   createCanvas(800,600);
 }
+
 
 function draw(){
  if(gameState === "notstarted"){
@@ -38,30 +38,37 @@ moon();
 rocket();
 landingSuccessful();
 landingCrash();
-restart();
+mousePressed();
 
-if (keyIsDown(32)) {
-  rocketY = rocketY - speed;
-}
-} else if (rocketY <= 295) {
-rocketY = rocketY + speed;
-}
 
-if (keyIsDown(32)) {
-  speed = speed - 0.01;
-} else {
-  speed = speed + 0.01;
-}
-
-// i tried to remove this part but it stopped working so i keep it for now
-//until i can figure out 
+//makes the rocket controllable with space bar + fire coming out the engines
 if (direction === "falling"){
+if (keyIsDown(32)) {
+  push();
+  fill(255, 100, 0);
+  noStroke();
+  rect(rocketX + 180, rocketY + 145, 15 * s, 10);
+  rect(rocketX + 205, rocketY + 145, 15 * s, 10);
+  fill(255, 250, 0);
+  rect(rocketX + 185, rocketY + 145, 5 * s, 5);
+  rect(rocketX + 210, rocketY + 145, 5 * s, 5);
+  pop();
+  speed = speed - 0.1;
+  console.log(speed);
+  } 
+  else {
+  speed = speed + 0.02;
+  console.log(speed);
+  }
+}
+
+// adjusted speed for falling 
   if (rocketY <= 295){
-    rocketY = rocketY + speed * 1.2;
+    rocketY = rocketY + speed * 1.6;
   }
  }
 }
-  
+
 function rocket(){
   //This is the yellow "holding station" for the rocket
   fill(255,205,0);
@@ -130,10 +137,6 @@ function rocket(){
   rect(rocketX + 190, rocketY + 131, 5 * s, 13 * s);
   rect(rocketX + 215, rocketY + 131, 5 * s, 13 * s);
   pop();
-
-  // the fire coming out of the engines
-
-
 }
 
 function moon(){
@@ -166,11 +169,7 @@ ellipse(moonX + 380, moonY + 215, 40 * s);
 pop();
 }
 
-
-
-
-
-
+/*
 // being able to control the speed
 function yMove() {
   if (gameState === "started") {
@@ -183,13 +182,14 @@ function yMove() {
     console.log("falling");
   }
 }
-
+*/
 
   //getting the rocket to crasg when reaching the planet too hard
   function landingCrash (){
     if (gameState === "started"){
-        if(rocketY > 295 && speed > 2){
-      gameState = "failed";
+        if(rocketY > 295 && speed > 1.3){
+      gameState = "unsuccessful";
+      direction = "landed";
       image(rocketCrash, 0, 0, 800, 600);
       console.log("You crashed");
     }
@@ -198,22 +198,28 @@ function yMove() {
 
   function landingSuccessful (){
     if (gameState === "started"){
-        if(rocketY > 295 && speed < 2){
-      gameState = "success";
+        if(rocketY > 295 && speed < 1.3){
+      gameState = "successful";
+      direction = "landed";
       image(landedSafe, 0, 0, 800, 600);
       console.log("Landing Successful");
     }
     }
   }
- 
-  function restart() {
-    if (gameState === "success" || gameState === "failed") {
-      if (mouseX > 110 && mouseX < 270 && mouseY > 210 && mouseY < 320) {
+
+  function mousePressed() { 
+    if (gameState === "success" || gameState === "failed") { 
+      if (mouseX > 110 && mouseX < 270 && mouseY > 210 && mouseY < 320) { 
         gameState = "started";
-        console.log("welcome back to Rocket Launch");
-      } else if (mouseX > rocketX + 440 && mouseX < rocketX + 600 && mouseY > rocketY + 140 && mouseY < rocketY + 240) {
+        rocketY = 10;
+        speed = 1;
+        direction = "falling";
+      } 
+      else if (mouseX > 540 && mouseX < 700 && mouseY > 210 && mouseY < 320) { 
         gameState = "notstarted";
-        console.log("welcome another time");
       }
     }
   }
+
+
+
