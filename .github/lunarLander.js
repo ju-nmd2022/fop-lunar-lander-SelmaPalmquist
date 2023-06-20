@@ -27,7 +27,6 @@ function setup(){
   createCanvas(800,600);
 }
 
-
 function draw(){
  if(gameState === "notstarted"){
   image(beforeStart, 0, 0, 800, 600);
@@ -169,22 +168,7 @@ ellipse(moonX + 380, moonY + 215, 40 * s);
 pop();
 }
 
-/*
-// being able to control the speed
-function yMove() {
-  if (gameState === "started") {
-    if (keyIsDown(16)) {
-      rocketY -= 2;
-      console.log("rising");
-    }
-  } else if (rocketY <= 295) {
-    rocketY++;
-    console.log("falling");
-  }
-}
-*/
-
-  //getting the rocket to crasg when reaching the planet too hard
+  //getting the rocket to crash when reaching the planet too hard
   function landingCrash (){
     if (gameState === "started"){
         if(rocketY > 295 && speed > 1.3){
