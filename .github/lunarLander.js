@@ -7,6 +7,7 @@ let beforeStart;
 let rocketCrash;
 let landedSafe;
 let direction = "falling";
+let gameState = "notstarted";
 
 function preload(){
   beforeStart = loadImage('images/startScreen.PNG');
@@ -15,10 +16,9 @@ function preload(){
 }
 
 
-let gameState = "notstarted";
 
 function mousePressed() {
-  if (mouseX > rocketX + 230 && mouseX < rocketX + 590 && mouseY > rocketY + 16 && mouseY < rocketY + 150) {
+  if (mouseX > 330 && mouseX < 680 && mouseY > 100 && mouseY < 230) {
     gameState = "started";
     console.log("welcome to Rocket Launch");
   }
@@ -39,22 +39,20 @@ rocket();
 landingSuccessful();
 landingCrash();
 restart();
-/*
-if (keyIsDown(16)) {
-  rocketY -= 2;
-  console.log("rising");
+
+if (keyIsDown(32)) {
+  rocketY -= 3;
 }
 } else if (rocketY <= 295) {
 rocketY = rocketY + 1;
-console.log("falling");
 }
-*/
+
+// i tried to remove this part but it stopped working so i keep it for now
+//until i can figure out 
 if (direction === "falling"){
   if (rocketY <= 295){
     rocketY = rocketY + 1;
   }
-
-}
  }
 }
 
@@ -189,7 +187,7 @@ function yMove() {
         if(rocketY > 295){
       gameState = "failed";
       image(rocketCrash, 0, 0, 800, 600);
-      console.log("Crash");
+      console.log("You crashed");
     }
     }
   }
@@ -206,7 +204,7 @@ function yMove() {
  
   function restart() {
     if (gameState === "success" || gameState === "failed") {
-      if (mouseX > rocketX + 10 && mouseX < rocketX + 170 && mouseY > rocketY + 140 && mouseY < rocketY + 240) {
+      if (mouseX > 110 && mouseX < 270 && mouseY > 210 && mouseY < 320) {
         gameState = "started";
         console.log("welcome back to Rocket Launch");
       } else if (mouseX > rocketX + 440 && mouseX < rocketX + 600 && mouseY > rocketY + 140 && mouseY < rocketY + 240) {
