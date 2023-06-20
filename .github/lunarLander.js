@@ -1,7 +1,7 @@
-let rocketX = 100;
+let rocketX = 160;
 let rocketY = 80;
 let s = 1.0;
-let moonX = 95;
+let moonX = 150;
 let moonY = 150;
 let beforeStart;
 let rocketCrash;
@@ -39,15 +39,23 @@ rocket();
 landingSuccessful();
 landingCrash();
 restart();
-yMove();
-
+/*
+if (keyIsDown(16)) {
+  rocketY -= 2;
+  console.log("rising");
+}
+} else if (rocketY <= 295) {
+rocketY = rocketY + 1;
+console.log("falling");
+}
+*/
 if (direction === "falling"){
   if (rocketY <= 295){
     rocketY = rocketY + 1;
   }
 
 }
-}
+ }
 }
 
 
