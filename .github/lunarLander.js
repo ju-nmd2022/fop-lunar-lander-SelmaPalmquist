@@ -32,6 +32,7 @@ function draw(){
   image(beforeStart, 0, 0, 800, 600);
  }
  if(gameState === "started"){
+  direction = "falling";
 background(0,0,0);
 moon();
 rocket();
@@ -191,13 +192,12 @@ pop();
     }
   }
 
-  function mouseClicked() { 
+  function mouseClicked() {
     if (gameState === "success" || gameState === "failed") { 
       if (mouseX > 110 && mouseX < 270 && mouseY > 210 && mouseY < 320) { 
         gameState = "started";
-  rocketY = 10;
-  speed = 1;
-  direction = "falling";
+        rocketY = 10;
+        speed = 1;
       } 
       else if (mouseX > 540 && mouseX < 700 && mouseY > 210 && mouseY < 320) { 
         gameState = "notstarted";
@@ -207,5 +207,6 @@ pop();
       }
     }
   }
-
+      // Added a delay to prevent the function from being triggered twice
+      setTimeout(mouseClicked, 100);
 
