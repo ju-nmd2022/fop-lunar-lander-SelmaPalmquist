@@ -207,6 +207,3 @@ pop();
       }
     }
   }
-      // Added a delay to prevent the function from being triggered twice
-      setTimeout(mouseClicked, 100);
-
