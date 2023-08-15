@@ -201,9 +201,7 @@ pop();
       } 
       else if (mouseX > 540 && mouseX < 700 && mouseY > 210 && mouseY < 320) { 
         gameState = "notstarted";
-        rocketY = 10;
-        speed = 1;
-        direction = "landed";
+        
       }
     }
   }
